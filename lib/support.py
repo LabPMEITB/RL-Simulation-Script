@@ -270,7 +270,40 @@ def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True
         plt.savefig("q_table.png", dpi=300)
              
     if show:
-        print(show)
         plt.show()
     else:
         plt.close()
+
+    return None
+
+def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylabel=""):
+    """
+        Function to plot a graph. The generated plot can be saved as a picture.
+    """
+    # Set the size of the plots
+    plt.figure(figsize=fsize)
+
+    # Plot the points
+    x = len(dat)
+    plt.plot(dat)
+
+    # Set the x axis
+    plt.xlabel(xlabel)
+    # Set the y axis
+    plt.ylabel(ylabel)
+
+    # Set the title
+    plt.title(title)
+
+    # Save the resulting image
+    if gen_file:
+        plt.savefig('graph.png', dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
+        # plt.savefig("graph.png", dpi=300, )
+
+    # Show the plot if configured
+    if show:
+        plt.show()
+    else:
+        plt.close()
+    
+    return None
