@@ -11,6 +11,16 @@ import numpy as np
 import random
 import time
 import math
+from numba import jit, float32
+
+
+@jit(float32(float32, float32))
+def mul(a, b):
+    return a*b
+        
+@jit(float32(float32, float32, float32, float32, float32))
+def qUpdt(a, g, qVal, reward, qMax):
+    return qVal + a * (reward + mul(g,qMax) - qVal)
 
 class Printer():
     """Print things to stdout on one line dynamically"""
@@ -63,27 +73,28 @@ class qrl:
         self.exploration_per_episode = []
 
     def policy_generator(self, qValue, eps_count):
-        random_number = math.floor(random.random()*self.E)
-        threshold = self.epsilon*(self.E - eps_count)
+        val = mul(random.random(),self.E)
+        random_number = math.floor(val)
+        threshold = mul(self.epsilon,(self.E - eps_count))
         if (random_number > threshold):
             # choose greedy action (exploitation)
             return np.argmax(qValue), 0
         else:
             # choose random action (exploration)
             return random.randint(0, self.A-1), 1
-
+        
     def start(self):
         # Print initial info
         print("Start Q-learning...")
         
         # Initialize progress bar
-        progress = 0
-        progress_bar = ' '*100
-        output = f"Progress:[{progress_bar}] ({progress}/100)"
-        Printer(output)
-        div = self.E//100
-        if(div == 0):
-            div = 1
+#         progress = 0
+#         progress_bar = ' '*100
+#         output = f"Progress:[{progress_bar}] ({progress}/100)"
+#         Printer(output)
+#         div = self.E//100
+#         if(div == 0):
+#             div = 1
         
         # Get start time
         start_time = time.time()
@@ -132,7 +143,7 @@ class qrl:
                 
                 # Calculate the new Q-value
                 q = self.Q[s][a]
-                newQ = q + self.alpha * (r + (self.gamma*maxQ) - q)
+                newQ = qUpdt(self.alpha, self.gamma, q, r, maxQ)
                 
                 # Update Q-Matrix
                 self.Q[s][a] = newQ
