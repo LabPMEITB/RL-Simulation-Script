@@ -1,12 +1,13 @@
 """
 PROGRAMMER  : ANDI MUHAMMAD RIYADHUS ILMY
 CREATE DATE : 2022/11/30 10:18
-DESCRIPTION : Library for support fucntions
+DESCRIPTION : Library for support functions
 """
 
 import os
 import sys
-
+import numpy as np
+import matplotlib.pyplot as plt
 
 def gen_path(c_dir, target_file):
     """
@@ -215,3 +216,61 @@ def find_goals(ns_list):
         if (count == 3):
             possible_goals.append(i)
     return possible_goals
+
+def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True):
+    """
+        Function to display the Q-Table as a heatmap. Also save the heatmap as a file.
+    """
+    
+    # Determine the number of heatmap to be shown
+    q_table = qTable
+    n_state, n_act = q_table.shape
+    
+    if (n_state > 25):
+        n_rows = 25
+        n_graph = n_state//n_rows
+        extra = n_state%25
+        if extra:
+            n_graph +=1
+        print(extra)
+    else:
+        n_graph = 1
+        n_rows = n_state
+        extra = 0
+        
+    # Set the size of the plots
+    if (fsize==None):
+        width = 5*n_graph
+        height = width*4
+        plt.figure(figsize=(width, height))
+    else:
+        plt.figure(figsize=fsize)
+    # Divide the Q-table into four separate graphs, each containing 25 states
+    for i in range(n_graph):
+        plt.subplot(1, n_graph, i+1)
+        plt.imshow(q_table[i*n_rows:(i+1)*n_rows, :], cmap="RdYlGn")
+
+        # Add x-axis labels for each action direction at the top of the plot
+        if (n_act == 4):
+            plt.xticks(range(n_act), ["Down", "Right", "Left", "Up"])
+
+        # Add y-axis labels for each state, prefixed with 'S'
+        plt.yticks(range(n_rows), [f"S{i*n_rows+j}" for j in range(n_rows)])
+
+        # Overlay the Q-values on top of the heatmap
+        if print_val:
+            if extra and i == n_graph - 1:
+                n_rows = extra
+            for j in range(n_rows):
+                for k in range(n_act):
+                        text = plt.text(k, j, f"{q_table[i*n_rows+j, k]:.3f}", ha="center", va="center", color="k", weight="bold", fontsize=10)
+
+    # Save the resulting image
+    if gen_file:
+        plt.savefig("q_table.png", dpi=300)
+             
+    if show:
+        print(show)
+        plt.show()
+    else:
+        plt.close()

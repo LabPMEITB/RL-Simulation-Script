@@ -91,11 +91,11 @@ class qrl:
         e = 0 # current episode
         while (e < self.E):
             # Print progress bar
-#             if (e%div)==0:
-#                 progress +=1
-#                 progress_bar = '='*progress+' '*(100-progress)
-#                 output = f"Progress:[{progress_bar}] ({progress}/100)"
-#                 Printer(output)
+            if (e%div)==0:
+                progress +=1
+                progress_bar = '='*progress+' '*(100-progress)
+                output = f"Progress:[{progress_bar}] ({progress}/100)"
+                Printer(output)
 
             # initialize agent's initial state
             valid = False
@@ -118,7 +118,7 @@ class qrl:
 
                 # Generate an action
                 a, explore_inc = self.policy_generator(QValues, e)
-#                 explore_count += explore_inc
+                explore_count += explore_inc
 
                 # observe next state
                 ns = self.NS[s][a]
@@ -138,16 +138,16 @@ class qrl:
                 self.Q[s][a] = newQ
 
                 # Record state visit count and move to the next state
-#                 self.state_visit_count[s] += 1
+                self.state_visit_count[s] += 1
                 s = ns
                 
                 #increment step
                 t += 1
 
             # Record analytics
-#             self.cumulative_rewards.append(cr)
-#             self.step_per_episode.append(t)
-#             self.exploration_per_episode.append(explore_count)
+            self.cumulative_rewards.append(cr)
+            self.step_per_episode.append(t)
+            self.exploration_per_episode.append(explore_count)
             
             # Increment episode 
             e += 1
