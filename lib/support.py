@@ -130,9 +130,21 @@ def find_goals(ns_list):
             possible_goals.append(i)
     return possible_goals
 
+def gen_maxMatrix(qTable):
+    matrix = []
+    for item in qTable:
+        maxQ = max(item)
+        act = np.argmax(item)
+        # print(item)
+        # print(maxQ)
+        # print(act)
+        matrix.append([maxQ, act])
+    return matrix
+
 def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True):
     """
-        Function to display the Q-Table as a heatmap. Also save the heatmap as a file.
+    Function to display the Q-Table as a heatmap. Also save the heatmap as 
+    a file.
     """
     
     # Determine the number of heatmap to be shown
@@ -221,7 +233,7 @@ def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylab
     
     return None
 
-def vis_svc(svc_arr, gen_file=False, show=True, title=""):
+def vis_svc(svc_arr, gen_file=False, show=True, title="State Visit Count"):
     x, y = svc_arr.shape
     plt.figure(figsize=(x,y))
     plt.imshow(svc_arr, interpolation='none')
@@ -240,3 +252,5 @@ def vis_svc(svc_arr, gen_file=False, show=True, title=""):
         plt.show()
     else:
         plt.close()
+    
+    return None
