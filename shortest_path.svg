@@ -13,106 +13,109 @@ line {
 .small { font: bold 10.0px sans-serif;
          fill: lightgray; }}
 </style>
-<marker id="arrow" markerWidth="10" markerHeight="7" refX="0" refY="2" orient="auto">
-	<polygon points="0 0, 4 2, 0 4" />
+<marker id="arrow" markerWidth="25.0" markerHeight="12.5" refX="0" refY="1" orient="auto">
+	<polygon points="0 0, 2 1, 0 2" />
 </marker>
 </defs>
-<rect x="0.0" y="0.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="0.0" y="50.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="0.0" y="100.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="0.0" y="150.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="0.0" y="200.0" width="50.0" height="50.0" fill="yellow" stroke="gray" stroke-width="1"/>
-<rect x="50.0" y="0.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="50.0" y="50.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="50.0" y="100.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="50.0" y="150.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="50.0" y="200.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="100.0" y="0.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="100.0" y="50.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="100.0" y="100.0" width="50.0" height="50.0" fill="green" stroke="gray" stroke-width="1"/>
-<rect x="100.0" y="150.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="100.0" y="200.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="150.0" y="0.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="150.0" y="50.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="150.0" y="100.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="150.0" y="150.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="150.0" y="200.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200.0" y="0.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200.0" y="50.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200.0" y="100.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200.0" y="150.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200.0" y="200.0" width="50.0" height="50.0" fill="none" stroke="gray" stroke-width="1"/>
+<!--Add Grid Layout-->
+<rect x="0" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="0" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="0" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="0" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="0" y="200" width="50" height="50" fill="yellow" stroke="gray" stroke-width="1"/>
+<rect x="50" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="50" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="50" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="50" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="50" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="150" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="150" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="150" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="150" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="150" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="200" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="200" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="200" y="100" width="50" height="50" fill="green" stroke="gray" stroke-width="1"/>
+<rect x="200" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="200" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 
-<text x="5.0" y="15.0" class="small">S0</text>
-<text x="5.0" y="65.0" class="small">S5</text>
-<text x="5.0" y="114.99999999999999" class="small">S10</text>
-<text x="5.0" y="165.0" class="small">S15</text>
-<text x="5.0" y="215.0" class="small">S20</text>
-<text x="55.00000000000001" y="15.0" class="small">S1</text>
-<text x="55.00000000000001" y="65.0" class="small">S6</text>
-<text x="55.00000000000001" y="114.99999999999999" class="small">S11</text>
-<text x="55.00000000000001" y="165.0" class="small">S16</text>
-<text x="55.00000000000001" y="215.0" class="small">S21</text>
-<text x="105.0" y="15.0" class="small">S2</text>
-<text x="105.0" y="65.0" class="small">S7</text>
-<text x="105.0" y="114.99999999999999" class="small">S12</text>
-<text x="105.0" y="165.0" class="small">S17</text>
-<text x="105.0" y="215.0" class="small">S22</text>
-<text x="155.0" y="15.0" class="small">S3</text>
-<text x="155.0" y="65.0" class="small">S8</text>
-<text x="155.0" y="114.99999999999999" class="small">S13</text>
-<text x="155.0" y="165.0" class="small">S18</text>
-<text x="155.0" y="215.0" class="small">S23</text>
-<text x="204.99999999999997" y="15.0" class="small">S4</text>
-<text x="204.99999999999997" y="65.0" class="small">S9</text>
-<text x="204.99999999999997" y="114.99999999999999" class="small">S14</text>
-<text x="204.99999999999997" y="165.0" class="small">S19</text>
-<text x="204.99999999999997" y="215.0" class="small">S24</text>
+<!--Add Coordinates-->
+<text x="5" y="15" class="small">S0</text>
+<text x="5" y="65" class="small">S5</text>
+<text x="5" y="114" class="small">S10</text>
+<text x="5" y="165" class="small">S15</text>
+<text x="5" y="215" class="small">S20</text>
+<text x="55" y="15" class="small">S1</text>
+<text x="55" y="65" class="small">S6</text>
+<text x="55" y="114" class="small">S11</text>
+<text x="55" y="165" class="small">S16</text>
+<text x="55" y="215" class="small">S21</text>
+<text x="105" y="15" class="small">S2</text>
+<text x="105" y="65" class="small">S7</text>
+<text x="105" y="114" class="small">S12</text>
+<text x="105" y="165" class="small">S17</text>
+<text x="105" y="215" class="small">S22</text>
+<text x="155" y="15" class="small">S3</text>
+<text x="155" y="65" class="small">S8</text>
+<text x="155" y="114" class="small">S13</text>
+<text x="155" y="165" class="small">S18</text>
+<text x="155" y="215" class="small">S23</text>
+<text x="204" y="15" class="small">S4</text>
+<text x="204" y="65" class="small">S9</text>
+<text x="204" y="114" class="small">S14</text>
+<text x="204" y="165" class="small">S19</text>
+<text x="204" y="215" class="small">S24</text>
 
-<line x1="0.0" y1="100.0" x2="50.0" y2="100.0"/>
-<line x1="50.0" y1="100.0" x2="50.0" y2="150.0"/>
-<line x1="0.0" y1="200.0" x2="50.0" y2="200.0"/>
-<line x1="0.0" y1="250.0" x2="50.0" y2="250.0"/>
-<line x1="50.0" y1="50.0" x2="100.0" y2="50.0"/>
-<line x1="100.0" y1="50.0" x2="100.0" y2="100.0"/>
-<line x1="50.0" y1="150.0" x2="100.0" y2="150.0"/>
-<line x1="50.0" y1="200.0" x2="100.0" y2="200.0"/>
-<line x1="50.0" y1="250.0" x2="100.0" y2="250.0"/>
-<line x1="100.0" y1="100.0" x2="150.0" y2="100.0"/>
-<line x1="100.0" y1="150.0" x2="150.0" y2="150.0"/>
-<line x1="150.0" y1="100.0" x2="150.0" y2="150.0"/>
-<line x1="150.0" y1="150.0" x2="150.0" y2="200.0"/>
-<line x1="100.0" y1="250.0" x2="150.0" y2="250.0"/>
-<line x1="150.0" y1="50.0" x2="200.0" y2="50.0"/>
-<line x1="200.0" y1="50.0" x2="200.0" y2="100.0"/>
-<line x1="200.0" y1="100.0" x2="200.0" y2="150.0"/>
-<line x1="150.0" y1="200.0" x2="200.0" y2="200.0"/>
-<line x1="150.0" y1="250.0" x2="200.0" y2="250.0"/>
-<line x1="250.0" y1="0.0" x2="250.0" y2="50.0"/>
-<line x1="250.0" y1="50.0" x2="250.0" y2="100.0"/>
-<line x1="200.0" y1="150.0" x2="250.0" y2="150.0"/>
-<line x1="250.0" y1="100.0" x2="250.0" y2="150.0"/>
-<line x1="250.0" y1="150.0" x2="250.0" y2="200.0"/>
-<line x1="200.0" y1="250.0" x2="250.0" y2="250.0"/>
-<line x1="250.0" y1="200.0" x2="250.0" y2="250.0"/>
+<!--Add Walls-->
+<line x1="0" y1="100" x2="50" y2="100"/>
+<line x1="50" y1="100" x2="50" y2="150"/>
+<line x1="0" y1="200" x2="50" y2="200"/>
+<line x1="0" y1="250" x2="50" y2="250"/>
+<line x1="50" y1="50" x2="100" y2="50"/>
+<line x1="100" y1="50" x2="100" y2="100"/>
+<line x1="50" y1="150" x2="100" y2="150"/>
+<line x1="50" y1="200" x2="100" y2="200"/>
+<line x1="50" y1="250" x2="100" y2="250"/>
+<line x1="100" y1="100" x2="150" y2="100"/>
+<line x1="100" y1="150" x2="150" y2="150"/>
+<line x1="150" y1="100" x2="150" y2="150"/>
+<line x1="150" y1="150" x2="150" y2="200"/>
+<line x1="100" y1="250" x2="150" y2="250"/>
+<line x1="150" y1="50" x2="200" y2="50"/>
+<line x1="200" y1="50" x2="200" y2="100"/>
+<line x1="200" y1="100" x2="200" y2="150"/>
+<line x1="150" y1="200" x2="200" y2="200"/>
+<line x1="150" y1="250" x2="200" y2="250"/>
+<line x1="250" y1="0" x2="250" y2="50"/>
+<line x1="250" y1="50" x2="250" y2="100"/>
+<line x1="200" y1="150" x2="250" y2="150"/>
+<line x1="250" y1="100" x2="250" y2="150"/>
+<line x1="250" y1="150" x2="250" y2="200"/>
+<line x1="200" y1="250" x2="250" y2="250"/>
+<line x1="250" y1="200" x2="250" y2="250"/>
 
-<line x1="30.0" y1="225.0" x2="65.0" y2="225.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="80.0" y1="225.0" x2="115.0" y2="225.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="130.0" y1="225.0" x2="165.0" y2="225.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="180.0" y1="225.0" x2="215.0" y2="225.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="225.0" y1="220.0" x2="225.0" y2="185.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="220.0" y1="175.0" x2="185.0" y2="175.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="175.0" y1="170.0" x2="175.0" y2="135.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="175.0" y1="120.00000000000001" x2="175.0" y2="85.00000000000001" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="170.0" y1="75.0" x2="135.0" y2="75.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="125.0" y1="70.0" x2="125.0" y2="35.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="120.00000000000001" y1="25.0" x2="85.00000000000001" y2="25.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="70.0" y1="25.0" x2="35.0" y2="25.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="25.0" y1="30.0" x2="25.0" y2="65.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="30.0" y1="75.0" x2="65.0" y2="75.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="75.0" y1="80.0" x2="75.0" y2="115.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="80.0" y1="125.0" x2="115.0" y2="125.0" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<!--Add path made of arrows-->
+<line x1="30" y1="225" x2="65" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="80" y1="225" x2="115" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="130" y1="225" x2="165" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="180" y1="225" x2="215" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="225" y1="220" x2="225" y2="185" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="220" y1="175" x2="185" y2="175" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="175" y1="170" x2="175" y2="135" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="175" y1="120" x2="175" y2="85" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="170" y1="75" x2="135" y2="75" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="125" y1="70" x2="125" y2="35" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="130" y1="25" x2="165" y2="25" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="180" y1="25" x2="215" y2="25" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="225" y1="30" x2="225" y2="65" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="225" y1="80" x2="225" y2="115" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
 
+<!--Add the north and west maze border-->
 <line x1="0" y1="0" x2="250" y2="0"/>
 <line x1="0" y1="0" x2="0" y2="250"/>
 </svg>
