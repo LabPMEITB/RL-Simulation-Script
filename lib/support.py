@@ -307,3 +307,23 @@ def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylab
         plt.close()
     
     return None
+
+def vis_svc(svc_arr, gen_file=False, show=True, title=""):
+    x, y = svc_arr.shape
+    plt.figure(figsize=(x,y))
+    plt.imshow(svc_arr, interpolation='none')
+    for i in range(x):
+        for j in range(y):
+            plt.text(j, i, f'S{j+i*x}', ha='center', va='center', color='lightgray', weight='bold', fontsize=20)
+            plt.text(j, i, f'{int(svc_arr[i, j])}', ha='center', va='center', color='black', weight='bold', fontsize=10)
+    plt.title(title)
+    
+    # Save the resulting image
+    if gen_file:
+        plt.savefig('svc.png', dpi=300)
+    
+    # Show the plot if configured
+    if show:
+        plt.show()
+    else:
+        plt.close()
