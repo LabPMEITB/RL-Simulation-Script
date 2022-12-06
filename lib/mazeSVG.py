@@ -5,10 +5,13 @@ DESCRIPTION : TBD
 """
 
 class drawMaze:
-    def __init__(self, mx, my, scale, ns):
+    def __init__(self, mx, my, ns, scale=None):
         self.x = mx
         self.y = my
-        self.scale = scale
+        if (scale==None):
+            self.scale = 50*mx
+        else:
+            self.scale = scale
         self.ns = ns
         # self.path = path
 

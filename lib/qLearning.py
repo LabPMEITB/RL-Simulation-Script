@@ -11,6 +11,9 @@ import numpy as np
 import random
 import time
 import math
+import os
+
+from lib import support as sp
 
 class Printer():
     """Print things to stdout on one line dynamically"""
@@ -20,6 +23,8 @@ class Printer():
 
 class qrl:
     def __init__(self,
+                 maze_x,
+                 maze_y,
                  total_state, 
                  total_action, 
                  learning_rate, 
@@ -56,12 +61,13 @@ class qrl:
         # Initialize Goal
         self.goal_state = goal_state
         self.rand_pool = random_pool
+
         # Analytics
         self.state_visit_count = np.zeros(self.S)
         self.cumulative_rewards = []
         self.step_per_episode = []
         self.exploration_per_episode = []
-
+        
     def policy_generator(self, qValue, eps_count):
         random_number = math.floor(random.random()*self.E)
         threshold = self.epsilon*(self.E - eps_count)
@@ -152,20 +158,17 @@ class qrl:
             # Increment episode 
             e += 1
             
-        end_time = time.time()
-
         # Print Info
-        print("Execution time = {0}s".format(end_time-start_time))
-        print("Finished learning for {0} episode(s)".format(e))
+        exec_time = time.time()-start_time
+        print(f"\nExecution time = {exec_time}s")
+        print(f"Finished learning for {e} episode(s)")
+        return exec_time
     
-    def shortest_path(self, start, show_step=False, quiet = True):
+    def shortest_path(self, start, quiet = True):
         goal = self.goal_state
         st = start
         total_action = 0
         list = []
-        
-        if (quiet==False): 
-            print(f'Shortest Path from S{st:03d} to S{goal:03d}.')
 
         t = 0
         failure = False
@@ -180,19 +183,57 @@ class qrl:
             total_action += 1
             save = [st, at, ns]
             list.append(save)
-
-            if show_step:
-                print(f'{st:03d}|{at:02d}|{ns:03d}')
-
             st = ns
             t += 1
 
         if (t < self.T) and (failure == False):
             if (quiet==False): 
-                print(f"Agent requires {total_action} step to reach  S{goal:03d} from S{start:03d}")
+                print(f"Agent requires {total_action} step to reach S{goal:03d} from S{start:03d}")
             return True, list
         else:
             if (quiet==False): 
-                print(f"Agent failed.")
+                print(f"Agent failed to reach S{goal:03d} from S{start:03d}")
                 print(list)
             return False, list
+
+    def shortest_path_test(self, 
+                           start_list=None, 
+                           quiet = True
+        ):
+        """
+            Function perform shortest path test from every possible start-
+            ing points or a set of starting point.
+        """
+        # Initialize return values
+        pass_count = 0
+        failed_case = []
+        record_list = []
+
+        # Create test cases
+        if (start_list):
+            test_case = start_list
+        else:
+            test_case = sp.find_goals(self.NS)
+            test_case.remove(self.goal_state)
+
+        # Perform test for every test case
+        for test_st in test_case:
+            isPass, record = self.shortest_path(test_st, quiet=quiet)
+            if isPass:
+                pass_count += 1
+            else:
+                failed_case.append(test_st)
+            record_list.append(record)
+
+        # Display status message
+        if not(quiet):
+            for i in range(len(test_case)):
+                print(f'[Replay Memory of Test Case {i}]')
+                for step in record_list[i]:
+                    st, at, ns = step
+                    print(f'{st:03d}|{at:02d}|{ns:03d}')
+        print(f'Goal reached count: {pass_count}/{len(test_case)}')
+
+        return pass_count, record_list, failed_case
+
+

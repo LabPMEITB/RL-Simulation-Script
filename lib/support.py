@@ -45,7 +45,7 @@ def scan_maze(maze_dir):
             mazeConfig_list.append(file)
 
     # Print all maze configuration files
-    print("%d maze cofing file(s) detected."% len(mazeConfig_list))
+    print("%d maze config file(s) detected."% len(mazeConfig_list))
     for file in mazeConfig_list:
         idx = mazeConfig_list.index(file) + 1
         print("%d) %s"% (idx, file))
@@ -253,4 +253,34 @@ def vis_svc(svc_arr, gen_file=False, show=True, title="State Visit Count"):
     else:
         plt.close()
     
+    return None
+
+def write_result_summary(filename, content, target_dir=None, quiet = True):
+    # Initialize file content
+    file_content = ""
+
+    # Write Content
+    for item in content:
+        file_content += f"[{item[0]}]\n"
+        for dat in item[1]:
+            file_content += f"{dat[0]} = {dat[1]}\n"
+    
+    ## Generate Target File
+    if target_dir:
+        target_file = os.path.join(target_dir, filename)
+    else:
+        target_file = filename
+    
+    ## Open and write to file
+    with open(target_file, 'w') as f:
+        ## Write data to the file
+        f.write(file_content)
+    
+        ## Close the file
+        f.close()
+    
+    ## Print Status message
+    if not(quiet):
+        print(f'File "{filename} generated.')
+
     return None
