@@ -8,6 +8,7 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import date
 
 def gen_path(c_dir, target_file):
     """
@@ -284,3 +285,70 @@ def write_result_summary(filename, content, target_dir=None, quiet = True):
         print(f'File "{filename} generated.')
 
     return None
+
+def gen_save_folder(dir, status=False):
+    """
+        Function to generate save folder.
+    """
+    ## Create save subfolder directories
+    save_subfolder = ['raw_data', 'shortest_path_test', 'qMatrix_change']
+    for subfolder in save_subfolder:
+        path = os.path.join(dir, subfolder)
+        if status: print(f'CREATING {path}')
+        os.mkdir(path)
+
+    return None
+
+def gen_save_dir(result_path, test_case, status=False):
+    """
+        Function to generate run result folder based on the run mode. This 
+        function return the list of the folder directories.
+    """
+    ## Define run_mode
+    if test_case == 1:
+        run_mode = 'idv'
+    else:
+        run_mode = 'set'
+
+    ## Create run results folder based on run mode
+    run_result_folder = f'{run_mode}_runs'
+    run_results_path = os.path.join(result_path, run_result_folder)
+    if os.path.isdir(run_results_path):
+        if status: print(f'UPDATING {run_results_path}')
+    else:
+        if status: print(f'CREATING {run_results_path}')
+        os.mkdir(run_results_path)
+    
+    ## Get the current date
+    today = date.today()
+    current_date = today.strftime("%y%m%d")
+
+    ## Generate a new save folder
+    idx = 0
+    save_folder = f'{current_date}_{run_mode}{idx}'
+    save_path = os.path.join(run_results_path, save_folder)
+    while os.path.isdir(save_path):
+        idx += 1
+        save_folder = f'{current_date}_{run_mode}{idx}'
+        save_path = os.path.join(run_results_path, save_folder)
+    if status: print(f'CREATING {save_path}')
+    os.mkdir(save_path)
+
+    ## Check if run_mode is 'set'
+    if run_mode=='set':
+        ## Generate save folder for eact test case
+        for i in range(test_case):
+            test_case_folder = f'maze_{i}'
+            test_case_path = os.path.join(save_path, test_case_folder)
+            if status: print(f'CREATING {test_case_path}')
+            os.mkdir(test_case_path)
+
+            ## Create subfolder directories in the save folder
+            gen_save_folder(test_case_path, status=status)
+            # for dir in subdirs:
+            #     return_list.append(dir)
+    else:
+        ## Create subfolder directories in the save folder
+        gen_save_folder(save_path, status=status)
+
+    return save_path
