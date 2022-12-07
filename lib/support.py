@@ -142,7 +142,7 @@ def gen_maxMatrix(qTable):
         matrix.append([maxQ, act])
     return matrix
 
-def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True):
+def display_qTable(qTable, fsize=None, print_val=True, gen_file=None, show=True):
     """
     Function to display the Q-Table as a heatmap. Also save the heatmap as 
     a file.
@@ -193,7 +193,8 @@ def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True
 
     # Save the resulting image
     if gen_file:
-        plt.savefig("q_table.png", dpi=300)
+        file_dir = os.path.join(gen_file, 'q_table.png')
+        plt.savefig(file_dir, dpi=300, bbox_inches='tight')
              
     if show:
         plt.show()
@@ -202,7 +203,7 @@ def display_qTable(qTable, fsize=None, print_val=True, gen_file=False, show=True
 
     return None
 
-def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylabel=""):
+def plot(dat, fsize=(20,5), gen_file=None, show=True, title=None, xlabel="", ylabel=""):
     """
         Function to plot a graph. The generated plot can be saved as a picture.
     """
@@ -219,12 +220,16 @@ def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylab
     plt.ylabel(ylabel)
 
     # Set the title
-    plt.title(title)
+    if title:
+        plt.title(title)
+        filename = f'{title}.png'
+    else:
+        filename = './temp/graph.png'
 
     # Save the resulting image
     if gen_file:
-        plt.savefig('graph.png', dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
-        # plt.savefig("graph.png", dpi=300, )
+        file_dir = os.path.join(gen_file, filename)
+        plt.savefig(file_dir, dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
 
     # Show the plot if configured
     if show:
@@ -234,7 +239,7 @@ def plot(dat, fsize=(20,5), gen_file=False, show=True, title="", xlabel="", ylab
     
     return None
 
-def vis_svc(svc_arr, gen_file=False, show=True, title="State Visit Count"):
+def vis_svc(svc_arr, gen_file=None, show=True, title="State Visit Count"):
     x, y = svc_arr.shape
     plt.figure(figsize=(x,y))
     plt.imshow(svc_arr, interpolation='none')
@@ -246,7 +251,8 @@ def vis_svc(svc_arr, gen_file=False, show=True, title="State Visit Count"):
     
     # Save the resulting image
     if gen_file:
-        plt.savefig('svc.png', dpi=300)
+        file_dir = os.path.join(gen_file,'svc.png')
+        plt.savefig(file_dir, dpi=300)
     
     # Show the plot if configured
     if show:

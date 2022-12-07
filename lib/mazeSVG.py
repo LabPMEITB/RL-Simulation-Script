@@ -181,7 +181,7 @@ class drawMaze:
         print('',file=file)
         return None
 
-    def gen_svg(self, filename, path=None):
+    def gen_svg(self, filename, path=None, goal_st=None):
         """Write an SVG file of a grid-maze."""
         with open(filename, 'w') as f:
             # SVG preamble and styleself.
@@ -210,7 +210,7 @@ class drawMaze:
             print('</defs>', file=f)
 
             # Draw initial grid square
-            self.draw_grid(f, path=path)
+            self.draw_grid(f, path=path, goal_st=goal_st)
 
             # Draw state coordinates
             self.draw_coordinate(f)
