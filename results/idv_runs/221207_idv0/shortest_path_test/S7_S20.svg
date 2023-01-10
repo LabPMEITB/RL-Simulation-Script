@@ -29,7 +29,7 @@ line {
 <rect x="50" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="50" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="100" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="100" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
+<rect x="100" y="50" width="50" height="50" fill="yellow" stroke="gray" stroke-width="1"/>
 <rect x="100" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="100" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="100" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
@@ -40,7 +40,7 @@ line {
 <rect x="150" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="200" y="0" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="200" y="50" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
-<rect x="200" y="100" width="50" height="50" fill="yellow" stroke="gray" stroke-width="1"/>
+<rect x="200" y="100" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="200" y="150" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 <rect x="200" y="200" width="50" height="50" fill="none" stroke="gray" stroke-width="1"/>
 
@@ -72,48 +72,39 @@ line {
 <text x="204" y="215" class="small">S24</text>
 
 <!--Add Walls-->
-<line x1="0" y1="100" x2="50" y2="100"/>
-<line x1="50" y1="100" x2="50" y2="150"/>
-<line x1="0" y1="200" x2="50" y2="200"/>
+<line x1="0" y1="50" x2="50" y2="50"/>
+<line x1="50" y1="150" x2="50" y2="200"/>
 <line x1="0" y1="250" x2="50" y2="250"/>
-<line x1="50" y1="50" x2="100" y2="50"/>
-<line x1="100" y1="50" x2="100" y2="100"/>
-<line x1="50" y1="150" x2="100" y2="150"/>
-<line x1="50" y1="200" x2="100" y2="200"/>
+<line x1="50" y1="200" x2="50" y2="250"/>
+<line x1="100" y1="0" x2="100" y2="50"/>
+<line x1="50" y1="100" x2="100" y2="100"/>
+<line x1="100" y1="100" x2="100" y2="150"/>
+<line x1="100" y1="150" x2="100" y2="200"/>
 <line x1="50" y1="250" x2="100" y2="250"/>
+<line x1="100" y1="50" x2="150" y2="50"/>
 <line x1="100" y1="100" x2="150" y2="100"/>
-<line x1="100" y1="150" x2="150" y2="150"/>
-<line x1="150" y1="100" x2="150" y2="150"/>
+<line x1="150" y1="50" x2="150" y2="100"/>
 <line x1="150" y1="150" x2="150" y2="200"/>
 <line x1="100" y1="250" x2="150" y2="250"/>
-<line x1="150" y1="50" x2="200" y2="50"/>
+<line x1="200" y1="0" x2="200" y2="50"/>
 <line x1="200" y1="50" x2="200" y2="100"/>
+<line x1="150" y1="150" x2="200" y2="150"/>
 <line x1="200" y1="100" x2="200" y2="150"/>
 <line x1="150" y1="200" x2="200" y2="200"/>
 <line x1="150" y1="250" x2="200" y2="250"/>
 <line x1="250" y1="0" x2="250" y2="50"/>
 <line x1="250" y1="50" x2="250" y2="100"/>
-<line x1="200" y1="150" x2="250" y2="150"/>
 <line x1="250" y1="100" x2="250" y2="150"/>
 <line x1="250" y1="150" x2="250" y2="200"/>
 <line x1="200" y1="250" x2="250" y2="250"/>
 <line x1="250" y1="200" x2="250" y2="250"/>
 
 <!--Add path made of arrows-->
-<line x1="225" y1="120" x2="225" y2="85" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="225" y1="70" x2="225" y2="35" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="220" y1="25" x2="185" y2="25" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="170" y1="25" x2="135" y2="25" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="125" y1="30" x2="125" y2="65" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="130" y1="75" x2="165" y2="75" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="175" y1="80" x2="175" y2="115" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="175" y1="130" x2="175" y2="165" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="180" y1="175" x2="215" y2="175" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="225" y1="180" x2="225" y2="215" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="220" y1="225" x2="185" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="170" y1="225" x2="135" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="120" y1="225" x2="85" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
-<line x1="70" y1="225" x2="35" y2="225" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="120" y1="75" x2="85" y2="75" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="70" y1="75" x2="35" y2="75" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="25" y1="80" x2="25" y2="115" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="25" y1="130" x2="25" y2="165" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
+<line x1="25" y1="180" x2="25" y2="215" stroke="#000" stroke-width="4" marker-end="url(#arrow)" />
 
 <!--Add the north and west maze border-->
 <line x1="0" y1="0" x2="250" y2="0"/>
