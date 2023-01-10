@@ -78,14 +78,10 @@ class qrl:
             # choose random action (exploration)
             return random.randint(0, self.A-1), 1
 
-    def start(self):
-        # Print initial info
-        print("Start Q-learning...")
-        
+    def start(self):        
         # Initialize progress bar
         progress = 0
-        progress_bar = ' '*100
-        output = f"Progress:[{progress_bar}] ({progress}/100)"
+        output = f" Progress = {progress}%"
         Printer(output)
         div = self.E//100
         if(div == 0):
@@ -99,8 +95,7 @@ class qrl:
             # Print progress bar
             if (e%div)==0:
                 progress +=1
-                progress_bar = '='*progress+' '*(100-progress)
-                output = f"Progress:[{progress_bar}] ({progress}/100)"
+                output = f" Progress = {progress}%"
                 Printer(output)
 
             # initialize agent's initial state
@@ -160,8 +155,8 @@ class qrl:
             
         # Print Info
         exec_time = time.time()-start_time
-        print(f"\nExecution time = {exec_time}s")
-        print(f"Finished learning for {e} episode(s)")
+        print(f"\n Finished learning for {e} episodes")
+        print(f" Runtime = {exec_time} s")
         return exec_time
     
     def shortest_path(self, start, quiet = True):
@@ -228,11 +223,11 @@ class qrl:
         # Display status message
         if not(quiet):
             for i in range(len(test_case)):
-                print(f'[Replay Memory of Test Case {i}]')
+                print(f' [Replay Memory of Test Case {i}]')
                 for step in record_list[i]:
                     st, at, ns = step
                     print(f'{st:03d}|{at:02d}|{ns:03d}')
-        print(f'Goal reached count: {pass_count}/{len(test_case)}')
+        print(f' Goal reached count: {pass_count}/{len(test_case)}')
 
         return pass_count, record_list, failed_case
 

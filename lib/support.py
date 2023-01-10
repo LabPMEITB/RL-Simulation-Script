@@ -190,17 +190,19 @@ def display_qTable(qTable, fsize=None, print_val=True, gen_file=None, show=True)
             for j in range(n_rows):
                 for k in range(n_act):
                         text = plt.text(k, j, f"{q_table[i*n_rows+j, k]:.3f}", ha="center", va="center", color="k", weight="bold", fontsize=10)
-
-    # Save the resulting image
-    if gen_file:
-        file_dir = os.path.join(gen_file, 'q_table.png')
-        plt.savefig(file_dir, dpi=300, bbox_inches='tight')
-             
+    
+    ## Show the plot if configured
     if show:
         plt.show()
     else:
         plt.close()
 
+    ## Save the resulting image
+    if gen_file:
+        file_dir = os.path.join(gen_file, 'q_table.png')
+        plt.savefig(file_dir, dpi=300, bbox_inches='tight')
+        print(f"Saved 'q_table.png' to '{gen_file}'")
+        
     return None
 
 def plot(dat, fsize=(20,5), gen_file=None, show=True, title=None, xlabel="", ylabel=""):
@@ -226,16 +228,17 @@ def plot(dat, fsize=(20,5), gen_file=None, show=True, title=None, xlabel="", yla
     else:
         filename = './temp/graph.png'
 
-    # Save the resulting image
-    if gen_file:
-        file_dir = os.path.join(gen_file, filename)
-        plt.savefig(file_dir, dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
-
-    # Show the plot if configured
+    ## Show the plot if configured
     if show:
         plt.show()
     else:
         plt.close()
+
+    ## Save the resulting image
+    if gen_file:
+        file_dir = os.path.join(gen_file, filename)
+        plt.savefig(file_dir, dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
+        print(f"Saved '{filename}' to '{gen_file}'")
     
     return None
 
@@ -249,12 +252,13 @@ def vis_svc(svc_arr, gen_file=None, show=True, title="State Visit Count"):
             plt.text(j, i, f'{int(svc_arr[i, j])}', ha='center', va='center', color='black', weight='bold', fontsize=10)
     plt.title(title)
     
-    # Save the resulting image
+    ## Save the resulting image
     if gen_file:
         file_dir = os.path.join(gen_file,'svc.png')
         plt.savefig(file_dir, dpi=300)
+        print(f"Saved 'svc.png' to '{gen_file}'")
     
-    # Show the plot if configured
+    ## Show the plot if configured
     if show:
         plt.show()
     else:
@@ -262,7 +266,7 @@ def vis_svc(svc_arr, gen_file=None, show=True, title="State Visit Count"):
     
     return None
 
-def write_result_summary(filename, content, target_dir=None, quiet = True):
+def write_result_summary(filename, content, target_dir=None, quiet=False):
     # Initialize file content
     file_content = ""
 
@@ -288,7 +292,7 @@ def write_result_summary(filename, content, target_dir=None, quiet = True):
     
     ## Print Status message
     if not(quiet):
-        print(f'File "{filename} generated.')
+        print(f"File '{filename}' generated and saved to '{target_dir}'")
 
     return None
 
@@ -305,13 +309,13 @@ def gen_save_folder(dir, status=False):
 
     return None
 
-def gen_save_dir(result_path, test_case, status=False):
+def gen_save_dir(result_path, total_run, status=False):
     """
         Function to generate run result folder based on the run mode. This 
         function return the list of the folder directories.
     """
     ## Define run_mode
-    if test_case == 1:
+    if total_run == 1:
         run_mode = 'idv'
     else:
         run_mode = 'set'
@@ -343,14 +347,14 @@ def gen_save_dir(result_path, test_case, status=False):
     ## Check if run_mode is 'set'
     if run_mode=='set':
         ## Generate save folder for eact test case
-        for i in range(test_case):
-            test_case_folder = f'maze_{i}'
-            test_case_path = os.path.join(save_path, test_case_folder)
-            if status: print(f'CREATING {test_case_path}')
-            os.mkdir(test_case_path)
+        for i in range(total_run):
+            run_folder = f'run_{i}'
+            run_folder_path = os.path.join(save_path, run_folder)
+            if status: print(f'CREATING {run_folder_path}')
+            os.mkdir(run_folder_path)
 
             ## Create subfolder directories in the save folder
-            gen_save_folder(test_case_path, status=status)
+            gen_save_folder(run_folder_path, status=status)
             # for dir in subdirs:
             #     return_list.append(dir)
     else:
