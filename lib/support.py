@@ -28,92 +28,144 @@ def gen_path(c_dir, target_file):
     # Return the generated path  
     return generated_path
 
-def scan_maze(maze_dir):
+def scan_maze(mazeDir):
     """
     Scan all available maze config files
     """
+    # Print intial status
+    print(f'Scanning Maze Config File...')
     # Get list of maze config available in the folder
-    maze_files = os.listdir(maze_dir)
+    mazeFiles = os.listdir(mazeDir)
 
     # Sort file
-    maze_files.sort()
+    mazeFiles.sort()
     
-    # Filter to only bitstream files
-    mazeConfig_list = []
-    for file in maze_files:
+    # Filter files to individual and set conviguration lists
+    mazeConfigList = []
+    setConfigList = []
+    for file in mazeFiles:
         extension = os.path.splitext(file)[1]
         if (extension == ".txt"):
-            mazeConfig_list.append(file)
+            mazeConfigList.append(file)
+        else:
+            setConfigList.append(file)
 
-    # Print all maze configuration files
-    print("%d maze config file(s) detected."% len(mazeConfig_list))
-    for file in mazeConfig_list:
-        idx = mazeConfig_list.index(file) + 1
-        print("%d) %s"% (idx, file))
-    
-    return mazeConfig_list
+    # Print scan results
+    print("\t%d maze config file(s) found."% len(mazeConfigList))
+    print("\t%d maze config set(s) found."% len(setConfigList))
+    print('Scanning finished.')
 
-def select_maze(maze_dir):
+    return mazeFiles
+
+def select_maze(mazeDir):
     # Scan maze config files
-    mazeConfig_list = scan_maze(maze_dir)
-    if len(mazeConfig_list)==0:
+    mazeConfigs = scan_maze(mazeDir)
+    
+    # Check if config files exist
+    if len(mazeConfigs)==0:
         print('No available config file.')
         return None
     else:
+        # Print all available configs
+        print('List of available maze configs:')
+        for config in mazeConfigs:
+            idx = mazeConfigs.index(config) + 1
+            print(f'\t{idx}) {config}')
+            
+        # Request user to select maze config
+        print('Please choose maze configuration file!')
         loop = True
         while(loop):
-            idx = int(input('\nInput Select Index (1-%d) : '%(len(mazeConfig_list))))-1
-            if ((0 <= idx) and (idx < len(mazeConfig_list))):
+            idx = int(input('\tInput Select Index (1-%d) : '%(len(mazeConfigs))))-1
+            if ((0 <= idx) and (idx < len(mazeConfigs))):
                 loop = False
-                selected_mazeConfig = mazeConfig_list[idx]
-                print("\nSelected '%s'"% selected_mazeConfig)
+                selectedMazeConfig = mazeConfigs[idx]
+                print("\tSelected '%s'"% selectedMazeConfig)
             else:
-                print('Input out of range. Please try again.')
-        return selected_mazeConfig
+                print('\tInput out of range. Please try again.')
+        return selectedMazeConfig
 
-def load_mazeConfig(maze_dir, config_file):
+def load_mazeConfig(mazeDir, configFile, TAB=''):
+    """
+    Read and separate data from config file to a list.
+    """
+    # Check config file, different behavior for maze set.
+    print(f'{TAB}Reading Config File...')
+    configTarget = os.path.join(mazeDir, configFile)
+    if os.path.isdir(configTarget):
+        # Config file is maze set
+        print(f'{TAB}\tConfig file contain multiple mazes.')
+        mazeConfigs = os.listdir(configTarget)
+        mazeConfigs.sort()
+        print(f'{TAB}\t{len(mazeConfigs)} maze config files found:')
+        configDataList = []
+        for mazeConfig in mazeConfigs:
+#             print(f'{TAB}\t\t{mazeConfig}')
+            fileTarget = os.path.join(configTarget, mazeConfig)
+            configData = get_config_data(fileTarget, TAB=f'{TAB}\t\t')
+            configDataList.append(configData)
+        return configDataList
+        
+    elif os.path.isfile(configTarget):
+        # Config file is a single maze configuration.
+        print(f'{TAB}\tConfig file contain 1 maze.')
+        print(f'{TAB}\tLoading maze config...')
+        configData = get_config_data(configTarget, TAB=f'{TAB}\t\t')
+        return [configData]
+    else:
+        # Config file is neither.
+        print(f'{TAB}\tError: Not a config file or set.')
+
+def get_config_data(configFile, TAB = ''):
     """
     Read and separate data from config file to a list.
     """
     # Read Maze config file
-    config_target = os.path.join(maze_dir, config_file)
-    with open(config_target, 'r') as f:
-        print(f'Loading {config_file}...')
+    with open(configFile, 'r') as f:
+        print(f'{TAB}Loading "{configFile}"...')
         lines = f.readlines()
-        total_line = len(lines)
-        print(f'\tFile consists of {total_line} lines of data.')
+        totalLine = len(lines)
+        print(f'{TAB}\tFile consists of {totalLine} lines of data.')
         f.close()
         
     # Load Maze Size
-    maze_x = int(lines[0])
-    maze_y = int(lines[1])
-    total_state = maze_x * maze_y
-    print(f'\tMaze size loaded. {maze_x}X{maze_y} ({total_state} states)')
+    mazeX = int(lines[0])
+    mazeY = int(lines[1])
+    totalState = mazeX * mazeY
+    print(f'{TAB}\tMaze size loaded. {mazeX}X{mazeY} ({totalState} states)')
 
     # Load total action
-    total_act = int(lines[2])
-    print(f'\tNumber of action loaded. There are {total_act} actions')
+    totalAct = int(lines[2])
+    print(f'{TAB}\tNumber of action loaded. There are {totalAct} actions')
 
     # Load Next State list
-    NS_list = [[0] * total_act for i in range(total_state)]
-    for i in range(total_state):
+    NSList = [[0] * totalAct for i in range(totalState)]
+    for i in range(totalState):
         x = lines[3+i].split(';')
         x.remove('\n')
-        for j in range(total_act):
-            NS_list[i][j] = int(x[j])
-    print('\tNext State list loaded.')
+        for j in range(totalAct):
+            NSList[i][j] = int(x[j])
+    print(f'{TAB}\tNext State list loaded.')
 
     # Load Current Reward List
-    RT_list = [[0.0] * total_act for i in range(total_state)]
-    for i in range(total_state):
-        x = lines[3+total_state+i].split(';')
+    RTList = [[0.0] * totalAct for i in range(totalState)]
+    for i in range(totalState):
+        x = lines[3+totalState+i].split(';')
         x.remove('\n')
-        for j in range(total_act):
-            RT_list[i][j] = float(x[j])
-    print('\tCurrent Reward list loaded.')
-    print(f'Finish loading {config_file}')
+        for j in range(totalAct):
+            RTList[i][j] = float(x[j])
+    print(f'{TAB}\tCurrent Reward list loaded.')
+    print(f'{TAB}Finish loading "{configFile}"')
     
-    return maze_x, maze_y, total_state, total_act, NS_list, RT_list
+    # Create dictionary
+    mazeDictionary = {'mX': mazeX, 
+                      'mY': mazeY, 
+                      'N': totalState, 
+                      'Z': totalAct, 
+                      'NS': NSList,
+                      'RT': RTList}
+    
+    return mazeDictionary
 
 def find_goals(ns_list):
     """

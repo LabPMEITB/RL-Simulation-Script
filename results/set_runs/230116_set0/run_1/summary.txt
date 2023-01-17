@@ -1,0 +1,12 @@
+[Hyperparameter]
+Maze configuration file = 22100605X05c0.txt
+Total episode = 10000
+Maximum step = 250
+Learning rate = 0.25
+Discount factor = 0.875
+Epsilon = 0.99
+Goal state = 10
+[Results]
+Possible start state = [12, 14, 20]
+Learning time (s) = 2.0208888053894043
+Shortest path test = 3/3
