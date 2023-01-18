@@ -63,6 +63,7 @@ class qrl:
         self.rand_pool = random_pool
 
         # Analytics
+        self.runTime = 0
         self.state_visit_count = np.zeros(self.S)
         self.cumulative_rewards = []
         self.step_per_episode = []
@@ -154,10 +155,10 @@ class qrl:
             e += 1
             
         # Print Info
-        exec_time = time.time()-start_time
+        self.runTime = time.time()-start_time
         print(f"\n Finished learning for {e} episodes")
-        print(f" Runtime = {exec_time} s")
-        return exec_time
+        print(f" Runtime = {self.runTime} s")
+        return None
     
     def shortest_path(self, start, quiet = True):
         goal = self.goal_state
@@ -200,35 +201,35 @@ class qrl:
             ing points or a set of starting point.
         """
         # Initialize return values
-        pass_count = 0
-        failed_case = []
-        record_list = []
+        passCount = 0
+        failedCases = []
+        recordList = []
 
         # Create test cases
         if (start_list):
-            test_case = start_list
+            testCases = start_list
         else:
-            test_case = sp.find_goals(self.NS)
-            test_case.remove(self.goal_state)
+            testCases, GS, SSP = sp.randomize_goal(self.NS)
+            testCases.remove(self.goal_state)
 
         # Perform test for every test case
-        for test_st in test_case:
-            isPass, record = self.shortest_path(test_st, quiet=quiet)
+        for startState in testCases:
+            isPass, record = self.shortest_path(startState, quiet=quiet)
             if isPass:
-                pass_count += 1
+                passCount += 1
             else:
-                failed_case.append(test_st)
-            record_list.append(record)
+                failedCases.append(startState)
+            recordList.append(record)
 
         # Display status message
         if not(quiet):
-            for i in range(len(test_case)):
+            for i in range(len(testCases)):
                 print(f' [Replay Memory of Test Case {i}]')
-                for step in record_list[i]:
+                for step in recordList[i]:
                     st, at, ns = step
                     print(f'{st:03d}|{at:02d}|{ns:03d}')
-        print(f' Goal reached count: {pass_count}/{len(test_case)}')
+        print(f' Goal reached count: {passCount}/{len(testCases)}')
 
-        return pass_count, record_list, failed_case
+        return passCount, recordList, failedCases
 
 
