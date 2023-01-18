@@ -5,6 +5,7 @@ DESCRIPTION : Library for support functions
 """
 
 import os
+import random
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -167,21 +168,37 @@ def get_config_data(configFile, TAB = ''):
     
     return mazeDictionary
 
-def find_goals(ns_list):
+def find_endPoints(NS):
     """
-    Find all possible goal state (dead end state) in a generated maze. Dead
+    Find all end points (dead ends) in the generated maze. Dead
     end states have only one next state that is not its own state.
+    This function return all the end points as a list.
     """
-    length = len(ns_list)
-    possible_goals = []
+    length = len(NS)
+    endPoints = []
     for i in range(length):
         count = 0
-        for ns in ns_list[i]:
+        for ns in NS[i]:
             if (ns == i):
                 count +=1
         if (count == 3):
-            possible_goals.append(i)
-    return possible_goals
+            endPoints.append(i)
+    return endPoints
+
+def randomize_goal(NS):
+    """
+    Select a goal state randomly from maze end points. Return the selected goal state 
+    and the rest of the endpoints as a start state pool. 
+    """
+    ## Select goal state randomly
+    mazeEndPoints = find_endPoints(NS)
+    goalState = random.choice(mazeEndPoints)
+
+    ## Create start state pool
+    startPool = mazeEndPoints[:]
+    startPool.remove(goalState)
+    
+    return mazeEndPoints, goalState, startPool 
 
 def gen_maxMatrix(qTable):
     matrix = []
@@ -242,18 +259,18 @@ def display_qTable(qTable, fsize=None, print_val=True, gen_file=None, show=True)
             for j in range(n_rows):
                 for k in range(n_act):
                         text = plt.text(k, j, f"{q_table[i*n_rows+j, k]:.3f}", ha="center", va="center", color="k", weight="bold", fontsize=10)
-    
-    ## Show the plot if configured
-    if show:
-        plt.show()
-    else:
-        plt.close()
 
     ## Save the resulting image
     if gen_file:
         file_dir = os.path.join(gen_file, 'q_table.png')
         plt.savefig(file_dir, dpi=300, bbox_inches='tight')
         print(f"Saved 'q_table.png' to '{gen_file}'")
+    
+    ## Show the plot if configured
+    if show:
+        plt.show()
+    else:
+        plt.close()
         
     return None
 
@@ -280,17 +297,17 @@ def plot(dat, fsize=(20,5), gen_file=None, show=True, title=None, xlabel="", yla
     else:
         filename = './temp/graph.png'
 
-    ## Show the plot if configured
-    if show:
-        plt.show()
-    else:
-        plt.close()
-
     ## Save the resulting image
     if gen_file:
         file_dir = os.path.join(gen_file, filename)
         plt.savefig(file_dir, dpi=300, edgecolor='white', facecolor='white', bbox_inches='tight')
         print(f"Saved '{filename}' to '{gen_file}'")
+
+    ## Show the plot if configured
+    if show:
+        plt.show()
+    else:
+        plt.close()
     
     return None
 
@@ -398,9 +415,17 @@ def gen_save_dir(result_path, total_run, status=False):
 
     ## Check if run_mode is 'set'
     if run_mode=='set':
+        ## Count the total digit of the total number of test case
+        digitCount=0
+        n = total_run
+        while(n > 0):
+            digitCount = digitCount + 1
+            n= n // 10
+        
         ## Generate save folder for eact test case
         for i in range(total_run):
-            run_folder = f'run_{i}'
+            idx = str(i).zfill(digitCount)
+            run_folder = f'run_{idx}'
             run_folder_path = os.path.join(save_path, run_folder)
             if status: print(f'CREATING {run_folder_path}')
             os.mkdir(run_folder_path)
