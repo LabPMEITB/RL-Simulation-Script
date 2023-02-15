@@ -8,5 +8,5 @@ The main file is `main.ipynb`. Details on how to run the file can be read inside
 ## Files Description
 - `main.ipynb` — The main script file
 - `lib` — Folder containing custom libraries used in `main.ipynb`
-- `maze_config` — Folder containing grid-maze environment configuration files generated from [this script](https://github.com/rydhslmy/RL_Sim)
+- `maze_config` — Folder containing grid-maze environment configuration files generated from [this script](https://github.com/rydhslmy/Grid-Maze-Generator-Script)
 - `temp` — A dump folder used by `main.ipynb`
